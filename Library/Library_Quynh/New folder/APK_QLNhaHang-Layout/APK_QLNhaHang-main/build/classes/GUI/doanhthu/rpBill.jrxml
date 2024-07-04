@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ed46f5bd-25d3-4d24-9479-d1206b53829c">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="132"/>
+	<parameter name="order_id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     MonAn."monan_id" AS MonAn_monan_id,
+     MonAn."ten_mon" AS MonAn_ten_mon,
+     MonAn."danh_muc_id" AS MonAn_danh_muc_id,
+     MonAn."gia" AS MonAn_gia,
+     MonAn."mo_ta" AS MonAn_mo_ta,
+     MonAn."hinh_anh" AS MonAn_hinh_anh,
+     DanhMucMonAn."danh_muc_id" AS DanhMucMonAn_danh_muc_id,
+     DanhMucMonAn."ten_danh_muc" AS DanhMucMonAn_ten_danh_muc,
+     ChiTietDonHang."detail_id" AS ChiTietDonHang_detail_id,
+     ChiTietDonHang."order_id" AS ChiTietDonHang_order_id,
+     ChiTietDonHang."id_monan" AS ChiTietDonHang_id_monan,
+     ChiTietDonHang."tenmonan" AS ChiTietDonHang_tenmonan,
+     ChiTietDonHang."so_luong" AS ChiTietDonHang_so_luong,
+     ChiTietDonHang."dongia" AS ChiTietDonHang_dongia,
+     ChiTietDonHang."Thanhtien" AS ChiTietDonHang_Thanhtien,
+     Ban."id_ban" AS Ban_id_ban,
+     Ban."ten_ban" AS Ban_ten_ban,
+     Ban."ngay_dat" AS Ban_ngay_dat,
+     Ban."trang_thai" AS Ban_trang_thai,
+     Ban."ghi_chu" AS Ban_ghi_chu,
+     DonHang."order_id" AS DonHang_order_id,
+     DonHang."id_ban" AS DonHang_id_ban,
+     DonHang."gia_giam" AS DonHang_gia_giam,
+     DonHang."TongBill" AS DonHang_TongBill,
+     DonHang."tongtien" AS DonHang_tongtien,
+     DonHang."trang_thai_thanhtoan" AS DonHang_trang_thai_thanhtoan
+FROM
+     "dbo"."DanhMucMonAn" DanhMucMonAn INNER JOIN "dbo"."MonAn" MonAn ON DanhMucMonAn."danh_muc_id" = MonAn."danh_muc_id"
+     INNER JOIN "dbo"."ChiTietDonHang" ChiTietDonHang ON MonAn."monan_id" = ChiTietDonHang."id_monan"
+     INNER JOIN "dbo"."DonHang" DonHang ON ChiTietDonHang."order_id" = DonHang."order_id"
+     INNER JOIN "dbo"."Ban" Ban ON DonHang."id_ban" = Ban."id_ban"
+WHERE
+     DonHang."order_id" = $P{order_id}]]>
+	</queryString>
+	<field name="MonAn_monan_id" class="java.lang.Integer"/>
+	<field name="MonAn_ten_mon" class="java.lang.String"/>
+	<field name="MonAn_danh_muc_id" class="java.lang.Integer"/>
+	<field name="MonAn_gia" class="java.math.BigDecimal"/>
+	<field name="MonAn_mo_ta" class="java.lang.String"/>
+	<field name="MonAn_hinh_anh" class="java.lang.String"/>
+	<field name="DanhMucMonAn_danh_muc_id" class="java.lang.Integer"/>
+	<field name="DanhMucMonAn_ten_danh_muc" class="java.lang.String"/>
+	<field name="ChiTietDonHang_detail_id" class="java.lang.Integer"/>
+	<field name="ChiTietDonHang_order_id" class="java.lang.Integer"/>
+	<field name="ChiTietDonHang_id_monan" class="java.lang.Integer"/>
+	<field name="ChiTietDonHang_tenmonan" class="java.lang.String"/>
+	<field name="ChiTietDonHang_so_luong" class="java.lang.Integer"/>
+	<field name="ChiTietDonHang_dongia" class="java.math.BigDecimal"/>
+	<field name="ChiTietDonHang_Thanhtien" class="java.math.BigDecimal"/>
+	<field name="Ban_id_ban" class="java.lang.Integer"/>
+	<field name="Ban_ten_ban" class="java.lang.String"/>
+	<field name="Ban_ngay_dat" class="java.sql.Timestamp"/>
+	<field name="Ban_trang_thai" class="java.lang.String"/>
+	<field name="Ban_ghi_chu" class="java.lang.String"/>
+	<field name="DonHang_order_id" class="java.lang.Integer"/>
+	<field name="DonHang_id_ban" class="java.lang.Integer"/>
+	<field name="DonHang_gia_giam" class="java.math.BigDecimal"/>
+	<field name="DonHang_TongBill" class="java.math.BigDecimal"/>
+	<field name="DonHang_tongtien" class="java.math.BigDecimal"/>
+	<field name="DonHang_trang_thai_thanhtoan" class="java.lang.String"/>
+	<variable name="Cong" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{ChiTietDonHang_Thanhtien}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="131" y="44" width="309" height="35" uuid="db292b1a-b7b9-44d7-8cb4-f604d472fae6"/>
+				<textElement>
+					<font fontName="Times New Roman" size="24"/>
+				</textElement>
+				<text><![CDATA[HÓA ĐƠN THANH TOÁN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="17" width="100" height="20" uuid="c4e84d71-3019-4a13-a10d-5eca5920e542"/>
+				<text><![CDATA[ID Order: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="37" width="100" height="20" uuid="fdccf289-900c-4318-b02e-844fdd4787b5"/>
+				<text><![CDATA[ID Bàn:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="17" width="148" height="20" uuid="4126e699-d49a-488a-8412-d60b9e4fe7c6"/>
+				<textFieldExpression><![CDATA[$F{DonHang_order_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="37" width="148" height="20" uuid="aa3437be-66d4-441a-b08c-76e08f728f02"/>
+				<textFieldExpression><![CDATA[$F{DonHang_id_ban}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="63" width="555" height="1" uuid="baae3415-6990-4ff3-a507-f1da9f8ed051"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="20" uuid="fcc68f66-7267-4313-a8c5-e4ea98ffd235"/>
+				<text><![CDATA[Tên món ăn]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="100" height="20" uuid="8733370d-2d0d-4a43-a5a0-2bb16104c6b2"/>
+				<text><![CDATA[Số Lượng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="100" height="20" uuid="06e838f4-7533-4d75-b6d5-7d488ef43704"/>
+				<text><![CDATA[Đơn Giá]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="d8efd008-2d90-4c86-8b06-849f196e031c"/>
+				<text><![CDATA[STT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="0" width="100" height="20" uuid="3d1ef39e-a675-46e7-ad7f-53f6c65e6d66"/>
+				<text><![CDATA[Thành Tiền]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="e68b04d7-c047-4814-aa7f-eb1bb29c4b1c"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="136ba5aa-59a1-4e37-9549-4497b80eb83c"/>
+				<textFieldExpression><![CDATA[$F{ChiTietDonHang_detail_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="8a12fd60-f99a-4720-a66b-c42bf4243709"/>
+				<textFieldExpression><![CDATA[$F{ChiTietDonHang_tenmonan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20" uuid="0a4d7096-3aa2-470e-a03d-bfbb42d7e9e5"/>
+				<textFieldExpression><![CDATA[$F{ChiTietDonHang_so_luong}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="20" uuid="25a0cfc6-a572-444c-a56f-e33118801877"/>
+				<textFieldExpression><![CDATA[$F{ChiTietDonHang_dongia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="100" height="20" uuid="2353d7b3-92ae-42fe-98df-802f6fcd4bc1"/>
+				<textFieldExpression><![CDATA[$F{ChiTietDonHang_Thanhtien}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="ab17f3d2-e063-43d7-9e4c-705377627580"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="78" splitType="Stretch">
+			<staticText>
+				<reportElement x="300" y="38" width="100" height="20" uuid="e764d153-f7b6-4681-be7d-fd2408fade6c"/>
+				<text><![CDATA[Giảm Giá:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="18" width="100" height="20" uuid="daec1e20-542f-4b19-83dd-621290d33e4f"/>
+				<text><![CDATA[Cộng:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="58" width="100" height="20" uuid="6771ef4f-9b2c-42d4-990e-79f48df2dbe2"/>
+				<text><![CDATA[Tổng Cộng:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="400" y="18" width="100" height="20" uuid="f52d48ca-273b-4cb7-9df2-7e3725374782"/>
+				<textFieldExpression><![CDATA[$V{Cong}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="38" width="100" height="20" uuid="f7acd0ee-0c13-4c53-bd8b-76e4380f39a9"/>
+				<textFieldExpression><![CDATA[$F{DonHang_gia_giam}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="58" width="100" height="20" uuid="5a2b2865-9879-4b88-aef9-dbdbdb9004c7"/>
+				<textFieldExpression><![CDATA[$V{Cong}.subtract($F{DonHang_gia_giam})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

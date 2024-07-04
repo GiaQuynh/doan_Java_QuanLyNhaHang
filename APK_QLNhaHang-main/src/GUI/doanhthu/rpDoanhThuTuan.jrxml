@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1841ced0-d81c-4e69-80c3-c47fc93472d5">
+	<property name="ireport.zoom" value="2.8531167061100184"/>
+	<property name="ireport.x" value="109"/>
+	<property name="ireport.y" value="288"/>
+	<parameter name="idbaocao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     KetCaBaoCao."idbaocao" AS KetCaBaoCao_idbaocao,
+     KetCaBaoCao."nhanvienketca" AS KetCaBaoCao_nhanvienketca,
+     KetCaBaoCao."gioVoCa" AS KetCaBaoCao_gioVoCa,
+     KetCaBaoCao."TienDauCa" AS KetCaBaoCao_TienDauCa,
+     KetCaBaoCao."TongSoHoaDon" AS KetCaBaoCao_TongSoHoaDon,
+     KetCaBaoCao."TienHang" AS KetCaBaoCao_TienHang,
+     KetCaBaoCao."PhiDichVu" AS KetCaBaoCao_PhiDichVu,
+     KetCaBaoCao."TienGiamGia" AS KetCaBaoCao_TienGiamGia,
+     KetCaBaoCao."DoanhThu" AS KetCaBaoCao_DoanhThu,
+     KetCaBaoCao."TienCuoiCa" AS KetCaBaoCao_TienCuoiCa,
+     KetCaBaoCao."GioXuatKetCa" AS KetCaBaoCao_GioXuatKetCa
+FROM
+     "dbo"."KetCaBaoCao" KetCaBaoCao
+WHERE
+     KetCaBaoCao."idbaocao" = $P{idbaocao}]]>
+	</queryString>
+	<field name="KetCaBaoCao_idbaocao" class="java.lang.Integer"/>
+	<field name="KetCaBaoCao_nhanvienketca" class="java.lang.String"/>
+	<field name="KetCaBaoCao_gioVoCa" class="java.sql.Date"/>
+	<field name="KetCaBaoCao_TienDauCa" class="java.math.BigDecimal"/>
+	<field name="KetCaBaoCao_TongSoHoaDon" class="java.math.BigDecimal"/>
+	<field name="KetCaBaoCao_TienHang" class="java.math.BigDecimal"/>
+	<field name="KetCaBaoCao_PhiDichVu" class="java.math.BigDecimal"/>
+	<field name="KetCaBaoCao_TienGiamGia" class="java.math.BigDecimal"/>
+	<field name="KetCaBaoCao_DoanhThu" class="java.math.BigDecimal"/>
+	<field name="KetCaBaoCao_TienCuoiCa" class="java.math.BigDecimal"/>
+	<field name="KetCaBaoCao_GioXuatKetCa" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="150" splitType="Stretch">
+			<staticText>
+				<reportElement x="143" y="115" width="263" height="29" uuid="a615700a-5d22-48df-b250-0ad1f480c116"/>
+				<textElement>
+					<font fontName="Times New Roman" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BÁO CÁO DOANH THU NGÀY]]></text>
+			</staticText>
+			<line>
+				<reportElement x="229" y="100" width="100" height="1" uuid="80930dd8-eb5b-46f1-93d9-46e331c925fa"/>
+			</line>
+			<staticText>
+				<reportElement x="171" y="45" width="215" height="20" uuid="38c20224-bdd7-4855-8e58-e7f1cc2332ff"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[123 Lê Trọng Tấn, P.12, Q.Tân Phú]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="171" y="65" width="215" height="20" uuid="276d12e7-bf86-46d9-8782-8b591e5dfcbe"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ĐT: 0987654321 - 0123456789]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="143" y="0" width="263" height="35" uuid="76a554a2-80bf-429b-8430-d54271ab4bcb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="23" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NHÀ HÀNG 102]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="141" y="32" width="100" height="20" uuid="8c884cd5-697a-43ad-9b63-d813e23a2526"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nhân Viên: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="12" width="100" height="20" uuid="55aed1e4-5bc9-4057-b860-d9d10278d2b9"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã báo cáo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="241" y="12" width="164" height="20" uuid="4090beb2-51a9-4e1f-b2e9-60927fd6471c"/>
+				<textFieldExpression><![CDATA[$F{KetCaBaoCao_idbaocao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="241" y="32" width="164" height="20" uuid="280df527-2e2c-4652-9858-0d7518767fd1"/>
+				<textFieldExpression><![CDATA[$F{KetCaBaoCao_nhanvienketca}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="126" y="64" width="297" height="1" uuid="3b0b23da-09ed-48eb-8c4f-1aee152d6d73"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="185" splitType="Stretch">
+			<staticText>
+				<reportElement x="142" y="21" width="99" height="20" uuid="33167bb5-09f1-4567-beb4-ad1a61ccc02e"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tiền đầu ca:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="1" width="99" height="20" uuid="21d7290e-67ac-4fb0-b931-c47636029558"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Giờ vô ca:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="41" width="99" height="20" uuid="b453d3d6-22a5-4466-9a89-f2a17bdf5403"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng số hóa đơn:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="61" width="99" height="20" uuid="0c52fcb9-6124-4cba-84d4-eeb919bdaf7c"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tiền hàng:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="81" width="100" height="20" uuid="b901146f-ab43-46df-8329-5e89817907dc"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Phí dịch vụ:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="101" width="100" height="20" uuid="7ff660ba-2ef1-4e6b-9e65-558ed1bdbe17"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tiền giảm giá:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="121" width="100" height="20" uuid="2227ec56-a3d7-4f8e-865a-c03618503031"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Doanh thu:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="263" y="21" width="161" height="20" uuid="f9af711c-1937-4665-b4b9-3e3cbd6fa712"/>
+				<textFieldExpression><![CDATA[$F{KetCaBaoCao_TienDauCa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="1" width="161" height="20" uuid="1cb43eac-9e9a-431c-bdb1-0bd48c9230a7"/>
+				<textFieldExpression><![CDATA[$F{KetCaBaoCao_gioVoCa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="41" width="161" height="20" uuid="d3c1d4fc-a07a-40c1-ae37-e2fe85a76782"/>
+				<textFieldExpression><![CDATA[$F{KetCaBaoCao_TongSoHoaDon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="61" width="161" height="20" uuid="b94c8d4e-a309-404e-8234-3e6572989c24"/>
+				<textFieldExpression><![CDATA[$F{KetCaBaoCao_TienHang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="81" width="161" height="20" uuid="35f2a0b2-2be4-4ad4-a084-52483063c558"/>
+				<textFieldExpression><![CDATA[$F{KetCaBaoCao_PhiDichVu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="101" width="161" height="20" uuid="495c880d-18c2-4b95-8d23-d8c681511f06"/>
+				<textFieldExpression><![CDATA[$F{KetCaBaoCao_TienGiamGia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="121" width="161" height="20" uuid="be59a978-1328-4c71-8f0d-1c310b480f32"/>
+				<textFieldExpression><![CDATA[$F{KetCaBaoCao_DoanhThu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="141" width="161" height="20" uuid="76312ee8-1975-43bd-9604-62be1c0181d0"/>
+				<textFieldExpression><![CDATA[$F{KetCaBaoCao_TienCuoiCa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="161" width="161" height="20" uuid="118ddc24-dfd1-4e8b-8efd-d67a68cfafe7"/>
+				<textFieldExpression><![CDATA[$F{KetCaBaoCao_GioXuatKetCa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="141" y="141" width="100" height="20" uuid="37f46946-e41c-42c9-8fa5-08ec08525abe"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tiền cuối ca:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="161" width="100" height="20" uuid="9777092f-ce50-4f50-a880-28860b5032e9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Giờ kết ca:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="127" y="180" width="297" height="1" uuid="b505f718-6ea0-431b-85c0-fc79df4efb4b"/>
+			</line>
+			<line>
+				<reportElement x="126" y="0" width="1" height="180" uuid="44e6d161-0ad3-408f-b0d8-46e1dfcb333b"/>
+			</line>
+			<line>
+				<reportElement x="243" y="1" width="1" height="180" uuid="6fb6b4b8-7fab-4135-b8d6-c491cda7545d"/>
+			</line>
+			<line>
+				<reportElement x="424" y="1" width="1" height="180" uuid="527a47fb-cc6f-431f-816d-fc1a5745bfe4"/>
+			</line>
+			<line>
+				<reportElement x="126" y="21" width="297" height="1" uuid="9c9841c8-0631-46bd-9241-c3f5a3045c0e"/>
+			</line>
+			<line>
+				<reportElement x="127" y="41" width="297" height="1" uuid="2d3f9b22-2f52-45e9-8e04-a724607616bb"/>
+			</line>
+			<line>
+				<reportElement x="128" y="60" width="297" height="1" uuid="536abbde-5ed6-4d67-bfa6-4a606872b846"/>
+			</line>
+			<line>
+				<reportElement x="128" y="81" width="297" height="1" uuid="09c74eb5-13f4-45f6-9525-079cedd4576c"/>
+			</line>
+			<line>
+				<reportElement x="128" y="101" width="297" height="1" uuid="db7366f8-dc9c-4569-a570-0bf5bd191ea4"/>
+			</line>
+			<line>
+				<reportElement x="128" y="120" width="297" height="1" uuid="1de6ab14-f819-4c34-b037-748652499dbc"/>
+			</line>
+			<line>
+				<reportElement x="128" y="141" width="297" height="1" uuid="3e74cfbc-f999-4ddf-bfe4-5bdaaf07f14f"/>
+			</line>
+			<line>
+				<reportElement x="126" y="161" width="297" height="1" uuid="1af03e0d-cbed-4815-ae78-b62f335af107"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

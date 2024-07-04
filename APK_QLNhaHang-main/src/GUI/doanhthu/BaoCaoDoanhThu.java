@@ -1,0 +1,441 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package GUI.doanhthu;
+
+import DAO.Connect;
+import DAO.KetCaDoanhThuDAO;
+import static DAO.SharedPreferences.getUser;
+import POJO.BaoCao;
+import POJO.KetCaBaoCaoPOJO;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Hashtable;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
+/**
+ *
+ * @author Quin Quin
+ */
+public class BaoCaoDoanhThu extends javax.swing.JFrame {
+
+    DefaultTableModel dtm = new DefaultTableModel();
+    Statement statement = null;
+    ResultSet result = null;
+    PreparedStatement preparedStatement = null;
+    CallableStatement cstmt;
+    Connection conn = null;
+    Connect connect = new Connect();
+
+    public BaoCaoDoanhThu() {
+        initComponents();
+        setLocationRelativeTo(null);
+        String[] tieuDe = {"ID", "Ngày", "Tổng số hóa đơn", "Tiền nhập hàng", "Doanh thu", "Thu ngân", "Phí dịch vụ", "Lợi nhuận ngày"};
+        dtm.setColumnIdentifiers(tieuDe);
+        tbDoanhThu.setRowHeight(30);
+        LoadBaoCaoNgay();
+
+    }
+
+    public void LoadBaoCaoNgay() {
+        dtm.setRowCount(0);
+        KetCaDoanhThuDAO xuly = new KetCaDoanhThuDAO();
+        ArrayList<KetCaBaoCaoPOJO> ds = xuly.DanhSach();
+        for (KetCaBaoCaoPOJO item : ds) {
+            Object[] rowData = {item.getIdbaocao(), item.getGioXuatKetCa(), item.getTongSoHoaDon(), item.getTienHang(), item.getDoanhThu(), item.getNhanvienketca(), item.getPhiDichVu(), item.getTienCuoiCa()};
+            dtm.addRow(rowData);
+
+        }
+        tbDoanhThu.setModel(dtm);
+
+    }
+    //public static Connect connection;
+//    DefaultTableModel dtm = new DefaultTableModel();
+//    Statement statement = null;
+//    ResultSet result = null;
+//    PreparedStatement preparedStatement = null;
+//    CallableStatement cstmt;
+//    Connection conn = null;
+//    Connect connect = new Connect();
+//
+//
+//    public BaoCaoDoanhThu() {
+//        initComponents();
+//        setLocationRelativeTo(null);
+//        String[] tieuDe = {"ID Hóa đơn", "Số tiền", "Ngày"};
+//        DefaultTableModel dtm = new DefaultTableModel();
+//        dtm.setColumnIdentifiers(tieuDe);
+//
+//        CallableStatement callStatement2 = null;
+//        ResultSet result = null;
+//
+//        try {
+//            
+//            conn = connect.ketNoiCSDL();
+//
+//            callStatement2 = conn.prepareCall("{call GetOrderDetails()}");
+//
+//            // Execute the query and retrieve the result set
+//            result = callStatement2.executeQuery();
+//            dtm.setRowCount(0);
+//
+//            // Iterate through the result set and populate the table model
+//            while (result.next()) {
+//                String ma = result.getString(1);
+//                Double tien = result.getDouble(2);
+//                Date ngay = result.getDate(3);
+//                Vector<Object> vec = new Vector<>();
+//                vec.add(ma);
+//                vec.add(tien);
+//                vec.add(ngay);
+//                dtm.addRow(vec);
+//            }
+//
+//            // Set the table model for the JTable
+//            tbDoanhThu.setModel(dtm);
+//            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            // Close resources in the finally block to ensure they are closed even if an exception occurs
+//            try {
+//                if (result != null) {
+//                    result.close();
+//                }
+//                if (callStatement2 != null) {
+//                    callStatement2.close();
+//                }
+//                // Assuming connection.ketNoiCSDL() returns a new connection each time, close it if applicable
+//                // if (conn != null) conn.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jColorChooser1 = new javax.swing.JColorChooser();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbDoanhThu = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jStartDate = new com.toedter.calendar.JDateChooser();
+        btnThang = new javax.swing.JButton();
+        btNgay = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1440, 800));
+
+        tbDoanhThu.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID Báo Cáo", "ID Hóa Đơn", "Số Tiền"
+            }
+        ));
+        jScrollPane1.setViewportView(tbDoanhThu);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 842, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel1.setText("Chọn Ngày Báo Cáo");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel3.setText("Báo Cáo Doanh Thu");
+
+        btnThang.setText("Báo Cáo Tháng");
+        btnThang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThangActionPerformed(evt);
+            }
+        });
+
+        btNgay.setText("Báo cáo ngày");
+        btNgay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNgayActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btNgay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(237, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(220, 220, 220))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addGap(30, 30, 30)
+                .addComponent(btNgay)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnThang))
+                .addContainerGap(71, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThangActionPerformed
+
+        jStartDate.getDate();
+        Date selectedDate = jStartDate.getDate();
+
+        if (selectedDate != null) {
+//            Calendar calendar = Calendar.getInstance();
+//            calendar.setTime(selectedDate);
+            String tenNhanVien = getUser();
+            XuatBaoCaoDoanhThuThang(jStartDate.getDate(), tenNhanVien);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn tháng báo cáo doanh thu!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_btnThangActionPerformed
+
+    private void btNgayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNgayActionPerformed
+
+        int select = tbDoanhThu.getSelectedRow();
+        Object id = tbDoanhThu.getValueAt(select, 0);
+
+        String idketca = id.toString();
+        int id2 = Integer.parseInt(idketca);
+
+        if (select != -1) {
+            String tenNhanVien = getUser();
+            XuatBaoCaoDoanhThuTuan(id2, tenNhanVien);
+        }
+    }//GEN-LAST:event_btNgayActionPerformed
+    public int getLatestOrderId() {
+        int latestOrderId = 0;
+        Connect provider = new Connect();
+        provider.ketNoiCSDL();
+        ResultSet resultSet = provider.executeQuery("SELECT MAX(order_id) AS latest_order_id FROM DonHang");
+
+        try {
+            // Lấy giá trị id_order mới nhất từ kết quả truy vấn
+            if (resultSet.next()) {
+                latestOrderId = resultSet.getInt("latest_order_id");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            try {
+                // Đóng tài nguyên liên quan
+                resultSet.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return latestOrderId;
+    }
+
+    public void XuatBill(int id) {
+        try {
+            Hashtable<String, Object> map = new Hashtable<>();
+            JasperReport report = JasperCompileManager.compileReport("src/GUI/doanhthu/rpBill.jrxml");
+            map.put("order_id", id);
+            JasperPrint p = JasperFillManager.fillReport(report, map, connect.ketNoiCSDL());
+            JasperViewer.viewReport(p, false);
+            JasperExportManager.exportReportToPdfFile(p, "test.pdf");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(BaoCaoDoanhThu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(BaoCaoDoanhThu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(BaoCaoDoanhThu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(BaoCaoDoanhThu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new BaoCaoDoanhThu().setVisible(true);
+            }
+        });
+    }
+
+    public void XuatBaoCaoDoanhThuTuan(int id, String tenNhanVien) {
+        try {
+
+            Hashtable map = new Hashtable();
+            JasperReport report = JasperCompileManager.compileReport("src/GUI/doanhthu/rpDoanhThuTuan.jrxml");
+
+            //map.put("ngay_dat", date);
+            map.put("idbaocao", id);
+            map.put("employee_name", tenNhanVien);
+
+            JasperPrint p = JasperFillManager.fillReport(report, map, connect.ketNoiCSDL());
+            JasperViewer.viewReport(p, false);
+            JasperExportManager.exportReportToPdfFile(p, "test.pdf");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void XuatBaoCaoDoanhThuThang(Date date, String tenNhanVien) {
+        try {
+
+            Hashtable map = new Hashtable();
+            JasperReport report = JasperCompileManager.compileReport("src/GUI/doanhthu/rpDoanhThuThang.jrxml");
+
+            map.put("ngay_dat", date);
+            map.put("employee_name", tenNhanVien);
+
+            JasperPrint p = JasperFillManager.fillReport(report, map, connect.ketNoiCSDL());
+            JasperViewer.viewReport(p, false);
+            JasperExportManager.exportReportToPdfFile(p, "test.pdf");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btNgay;
+    private javax.swing.JButton btnThang;
+    private javax.swing.JColorChooser jColorChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.calendar.JDateChooser jStartDate;
+    private javax.swing.JTable tbDoanhThu;
+    // End of variables declaration//GEN-END:variables
+}
